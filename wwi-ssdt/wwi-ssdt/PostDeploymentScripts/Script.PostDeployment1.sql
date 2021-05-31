@@ -150,7 +150,7 @@ SET @UpdateCustomFields = 1
 SET @IsSilentMode = 1
 SET @AreDatesPrinted = 1
 
-SET @StartYear = 2010
+SET @StartYear = 2014
 SET @EndYear = 2020
 
 SET @CurrentYear = @StartYear
@@ -160,26 +160,8 @@ BEGIN
 
   SET @Year = CONVERT(nvarchar(4), @CurrentYear, 107)
 
-  -- January
+  -- Quarter 1
   SET @StartDate = @Year + '0101'
-  SET @EndDate   = @Year + '0131'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- February
-  SET @StartDate = @Year + '0201'
-  SET @EndDate   = @Year + '0228'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- March
-  SET @StartDate = @Year + '0301'
   SET @EndDate   = @Year + '0331'
   
   EXEC DataLoadSimulation.DailyProcessToCreateHistory 
@@ -187,26 +169,8 @@ BEGIN
       @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
       @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
 
-  -- April
+  -- Quarter 2
   SET @StartDate = @Year + '0401'
-  SET @EndDate   = @Year + '0430'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- May
-  SET @StartDate = @Year + '0501'
-  SET @EndDate   = @Year + '0531'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- June
-  SET @StartDate = @Year + '0601'
   SET @EndDate   = @Year + '0630'
   
   EXEC DataLoadSimulation.DailyProcessToCreateHistory 
@@ -214,26 +178,8 @@ BEGIN
       @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
       @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
 
-  -- July
+  -- Quarter 3
   SET @StartDate = @Year + '0701'
-  SET @EndDate   = @Year + '0731'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- August
-  SET @StartDate = @Year + '0801'
-  SET @EndDate   = @Year + '0831'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- September
-  SET @StartDate = @Year + '0901'
   SET @EndDate   = @Year + '0930'
   
   EXEC DataLoadSimulation.DailyProcessToCreateHistory 
@@ -241,26 +187,8 @@ BEGIN
       @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
       @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
 
-  -- October
+  -- Quarter 4
   SET @StartDate = @Year + '1001'
-  SET @EndDate   = @Year + '1031'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- November
-  SET @StartDate = @Year + '1101'
-  SET @EndDate   = @Year + '1130'
-  
-  EXEC DataLoadSimulation.DailyProcessToCreateHistory 
-      @StartDate, @EndDate, @AverageNumberOfCustomerOrdersPerDay,
-      @SaturdayPercentageOfNormalWorkDay, @SundayPercentageOfNormalWorkDay,
-      @UpdateCustomFields, @IsSilentMode, @AreDatesPrinted;
-
-  -- December
-  SET @StartDate = @Year + '1201'
   SET @EndDate   = @Year + '1231'
   
   EXEC DataLoadSimulation.DailyProcessToCreateHistory 
@@ -272,9 +200,7 @@ BEGIN
   
 END
 
--- After the iniital load you can use the code below to bring the data up to current date
--- You can run just the part below after the initial load, as often as is needed
-
+-- Add in 2021
 USE [WideWorldImporters]
 GO
 
