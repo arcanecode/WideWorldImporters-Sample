@@ -697,12 +697,10 @@
       },
       {
         "name": "Sale Invoice Date",
-        "dataCategory": "Time",
         "columns": [
           {
             "name": "Date",
             "dataType": "dateTime",
-            "isKey": true,
             "sourceColumn": "Date"
           },
           {
@@ -1498,8 +1496,52 @@
           },
           {
             "name": "Invoiced Sales Total Including Tax YTD",
-            "expression": "CALCULATE('Sales'[Sales Total Including Tax], DATESYTD( 'Sale Invoice Date'[Date]) )",
+            "expression": "CALCULATE(TOTALYTD('Sales'[Sales Total Including Tax], 'Sale Invoice Date'[Date]), FILTER('Sale Invoice Date', 'Sale Invoice Date'[Date] = TODAY() ) )",
             "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "kpi": {
+              "targetExpression": "'Sales'[Invoiced Sales Total Including Tax Previous YTD]",
+              "targetFormatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+              "statusGraphic": "Traffic Light - Single",
+              "statusExpression": [
+                "var x='Sales'[Invoiced Sales Total Including Tax YTD]/'Sales'[_Invoiced Sales Total Including Tax YTD Goal] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<0.4,-1,",
+                "\t                If(x<0.8,0,1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "Measure"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "Linear"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Percentage"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "40"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "80"
+                }
+              ]
+            },
             "annotations": [
               {
                 "name": "Format",
@@ -1509,7 +1551,7 @@
           },
           {
             "name": "Invoiced Sales Total Including Tax Previous YTD",
-            "expression": "CALCULATE([Invoiced Sales Total Including Tax YTD], SAMEPERIODLASTYEAR('Sale Invoice Date'[Date]))",
+            "expression": "CALCULATE(TOTALYTD('Sales'[Sales Total Including Tax], 'Sale Invoice Date'[Date]), FILTER('Sale Invoice Date', 'Sale Invoice Date'[Date] = EDATE(TODAY(), -12) ) )",
             "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
             "annotations": [
               {
@@ -5251,9 +5293,6 @@
               },
               {
                 "name": "Invoiced Sales Total Including Tax Previous YTD"
-              },
-              {
-                "name": "Invoiced Sales Total Including Tax YTD"
               },
               {
                 "name": "Invoiced Sales Total Including Tax Year over Year Difference"
