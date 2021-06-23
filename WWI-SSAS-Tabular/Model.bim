@@ -292,18 +292,21 @@
             "name": "Employee Key",
             "dataType": "int64",
             "isHidden": true,
-            "sourceColumn": "Employee Key"
+            "sourceColumn": "Employee Key",
+            "sortByColumn": "Employee"
           },
           {
             "name": "WWI Employee ID",
             "dataType": "int64",
             "isHidden": true,
-            "sourceColumn": "WWI Employee ID"
+            "sourceColumn": "WWI Employee ID",
+            "sortByColumn": "Employee"
           },
           {
             "name": "Employee",
             "dataType": "string",
-            "sourceColumn": "Employee"
+            "sourceColumn": "Employee",
+            "sortByColumn": "Preferred Name"
           },
           {
             "name": "Preferred Name",
